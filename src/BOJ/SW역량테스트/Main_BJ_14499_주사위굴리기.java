@@ -8,7 +8,6 @@ import java.util.StringTokenizer;
 public class Main_BJ_14499_주사위굴리기 {
     static final int[][] DELTAS = {{0, 0}, {0, 1}, {0, -1}, {-1, 0}, {1, 0}};
     static final int DICEFACES = 6;
-
     static final int TOP = 0;
     static final int RIGHT = 1;
     static final int FRONT = 2;
@@ -144,21 +143,15 @@ public class Main_BJ_14499_주사위굴리기 {
     }
 
     public static boolean isFrontOrBack(int num) {
-        if (num == FRONT || num == BACK)
-            return true;
-        return false;
+        return num == FRONT || num == BACK;
     }
 
     public static boolean isRightOrLeft(int num) {
-        if (num == RIGHT || num == LEFT)
-            return true;
-        return false;
+        return num == RIGHT || num == LEFT;
     }
 
     public static boolean isIn(int r, int c) {
-        if (r < 0 || c < 0 || r >= N || c >= M)
-            return false;
-        return true;
+        return r >= 0 && c >= 0 && r < N && c < M;
     }
 
 }
