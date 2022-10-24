@@ -51,16 +51,13 @@ public class Main_BJ_1707_이분그래프 {
             while (!queue.isEmpty()) {
                 int currentVertex = queue.poll();
                 for (int adjVertex : adjList.get(currentVertex)) {
-                    if (group[adjVertex] == BEFORE_GROUPING) {
-                        queue.offer(adjVertex);
-                    }
                     if (group[currentVertex] == group[adjVertex]) {
                         sb.append("NO").append("\n");
                         return;
-                    } else if (group[currentVertex] == GROUP1 && group[adjVertex] == BEFORE_GROUPING) {
-                        group[adjVertex] = GROUP2;
-                    } else if (group[currentVertex] == GROUP2 && group[adjVertex] == BEFORE_GROUPING) {
-                        group[adjVertex] = GROUP1;
+                    }
+                    if (group[adjVertex] == BEFORE_GROUPING) {
+                        queue.offer(adjVertex);
+                        group[adjVertex] = group[currentVertex] == GROUP1 ? GROUP2 : GROUP1;
                     }
                 }
             }
