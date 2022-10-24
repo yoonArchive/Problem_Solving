@@ -36,13 +36,13 @@ public class Main_BJ_1707_이분그래프 {
                 adjList.get(a).add(b);
                 adjList.get(b).add(a);
             }
-            validate(adjList, group, V, E);
+            validate(adjList, group, V);
             queue.clear();
         }
         System.out.println(sb);
     }
 
-    private static void validate(List<List<Integer>> adjList, int[] group, int V, int E) {
+    private static void validate(List<List<Integer>> adjList, int[] group, int V) {
         for (int i = 1; i <= V; i++) {
             if (group[i] == BEFORE_GROUPING) {
                 queue.offer(i);
