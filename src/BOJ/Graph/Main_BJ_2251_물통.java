@@ -14,20 +14,20 @@ public class Main_BJ_2251_물통 {
 
     public static int[] volumes;
     public static boolean[][] isPoured;
-    public static Set<Integer> ListOfC;
+    public static Set<Integer> SetOfC;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
         StringTokenizer st = new StringTokenizer(br.readLine());
         volumes = new int[BUCKETS];
-        ListOfC = new TreeSet<>();
+        SetOfC = new TreeSet<>();
         for (int i = 0; i < BUCKETS; i++) {
             volumes[i] = Integer.parseInt(st.nextToken());
         }
         isPoured = new boolean[volumes[A] + 1][volumes[B] + 1];
         pour(0, 0, volumes[2]);
-        for (int amount : ListOfC) {
+        for (int amount : SetOfC) {
             sb.append(amount).append(" ");
         }
         System.out.println(sb);
@@ -39,7 +39,7 @@ public class Main_BJ_2251_물통 {
             return;
         }
         if (amountOfA == 0) {
-            ListOfC.add(amountOfC);
+            SetOfC.add(amountOfC);
         }
         isPoured[amountOfA][amountOfB] = true;
 
