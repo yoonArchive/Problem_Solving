@@ -10,7 +10,6 @@ public class Main_BJ_3055_탈출 {
 
     public static final char EMPTY = '.';
     public static final char WATER = '*';
-    public static final char STONE = 'X';
     public static final char BEAVER = 'D';
     public static final char HEDGEHOG = 'S';
     public static final String IMPOSSIBLE = "KAKTUS";
@@ -23,6 +22,7 @@ public class Main_BJ_3055_탈출 {
     public static PriorityQueue<Node> moveQueue;
 
     public static class Node implements Comparable<Node> {
+
         int r;
         int c;
         int time;
