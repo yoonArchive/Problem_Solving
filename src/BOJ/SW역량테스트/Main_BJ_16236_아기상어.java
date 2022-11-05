@@ -73,7 +73,7 @@ public class Main_BJ_16236_아기상어 {
                 int r = shark.r;
                 int c = shark.c;
                 int distance = shark.distance;
-                if (map[r][c] > 0 && map[r][c] < sharkSize) {
+                if (map[r][c] != EMPTY && map[r][c] < sharkSize) {
                     findFlag = true;
                     eatFish(r, c, distance);
                     break;
