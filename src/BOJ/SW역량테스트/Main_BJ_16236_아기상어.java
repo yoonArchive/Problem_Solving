@@ -1,42 +1,36 @@
 package BOJ.SW역량테스트;
 
 import java.io.*;
-import java.util.LinkedList;
 import java.util.PriorityQueue;
-import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main_BJ_16236_아기상어 {
 
     public static final int EMPTY = 0;
-    public static final int CAUGHT = -1;
 
-    public static int N, time, eatCount, sharkR, sharkC, sharkSize;
+    public static int N, time, sharkR, sharkC, eatCount, sharkSize;
     public static int[][] map;
-    public static PriorityQueue<Fish> fishQueue;
     public static int[][] deltas = {{-1, 0}, {0, -1}, {1, 0}, {0, 1}};
 
-    public static class Fish implements Comparable<Fish> {
+    public static class Shark implements Comparable<Shark> {
         int r;
         int c;
-        int size;
-        int distanceFromShark;
+        int distance;
 
-        public Fish(int r, int c, int size, int distanceFromShark) {
+        public Shark(int r, int c, int distance) {
             this.r = r;
             this.c = c;
-            this.size = size;
-            this.distanceFromShark = distanceFromShark;
+            this.distance = distance;
         }
 
-        public int compareTo(Fish o) {
-            if (this.distanceFromShark == o.distanceFromShark) {
+        public int compareTo(Shark o) {
+            if (this.distance == o.distance) {
                 if (this.r == o.r) {
                     return this.c - o.c;
                 }
                 return this.r - o.r;
             }
-            return this.distanceFromShark - o.distanceFromShark;
+            return this.distance - o.distance;
         }
     }
 
@@ -45,7 +39,6 @@ public class Main_BJ_16236_아기상어 {
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         N = Integer.parseInt(br.readLine());
         map = new int[N][N];
-        fishQueue = new PriorityQueue<>();
         sharkSize = 2;
         int current;
         for (int i = 0; i < N; i++) {
@@ -60,82 +53,61 @@ public class Main_BJ_16236_아기상어 {
                 }
             }
         }
-        while (true) {
-            getEdibleFish();
-            if (fishQueue.size() == 0) {
-                break;
-            }
-            eatFish();
-            if (eatCount == sharkSize) {
-                sharkSize++;
-                eatCount = 0;
-            }
-        }
+        findEdibleFish();
         bw.write(Integer.toString(time));
         br.close();
         bw.flush();
         bw.close();
     }
 
-    private static void eatFish() {
-        Fish fish = fishQueue.poll();
-        int r = fish.r;
-        int c = fish.c;
-        int distanceFromShark = fish.distanceFromShark;
-        map[r][c] = CAUGHT;
-        time += distanceFromShark;
+
+    private static void findEdibleFish() {
+        PriorityQueue<Shark> sharkQueue = new PriorityQueue<>();
+        while (true) {
+            sharkQueue.offer(new Shark(sharkR, sharkC, 0));
+            boolean[][] isVisited = new boolean[N][N];
+            isVisited[sharkR][sharkC] = true;
+            boolean findFlag = false;
+            while (!sharkQueue.isEmpty()) {
+                Shark shark = sharkQueue.poll();
+                int r = shark.r;
+                int c = shark.c;
+                int distance = shark.distance;
+                if (map[r][c] > 0 && map[r][c] < sharkSize) {
+                    findFlag = true;
+                    eatFish(r, c, distance);
+                    break;
+                }
+                for (int d = 0; d < 4; d++) {
+                    int nr = r + deltas[d][0];
+                    int nc = c + deltas[d][1];
+                    if (!isIn(nr, nc) || isVisited[nr][nc] || map[nr][nc] > sharkSize) {
+                        continue;
+                    }
+                    sharkQueue.offer(new Shark(nr, nc, distance + 1));
+                    isVisited[nr][nc] = true;
+                }
+            }
+            if (!findFlag) {
+                break;
+            }
+            sharkQueue.clear();
+        }
+    }
+
+    private static void eatFish(int r, int c, int distance) {
         eatCount++;
+        time += distance;
+        map[r][c] = EMPTY;
         sharkR = r;
         sharkC = c;
-    }
-
-    private static void getEdibleFish() {
-        int current;
-        fishQueue.clear();
-        for (int i = 0; i < N; i++) {
-            for (int j = 0; j < N; j++) {
-                current = map[i][j];
-                if (current == EMPTY || current == CAUGHT) {
-                    continue;
-                }
-                if (current < sharkSize) {
-                    int distance = getDistanceFromShark(i, j);
-                    if (distance != Integer.MAX_VALUE) {
-                        fishQueue.offer(new Fish(i, j, current, distance));
-                    }
-                }
-            }
+        if (eatCount == sharkSize) {
+            eatCount = 0;
+            sharkSize++;
         }
     }
 
-    private static int getDistanceFromShark(int fishR, int fishC) {
-        Queue<int[]> queue = new LinkedList<>();
-        boolean isVisited[][] = new boolean[N][N];
-        queue.offer(new int[]{sharkR, sharkC, 0});
-        isVisited[sharkR][sharkC] = true;
-        int result = Integer.MAX_VALUE;
-        while (!queue.isEmpty()) {
-            int[] node = queue.poll();
-            int r = node[0];
-            int c = node[1];
-            int distance = node[2];
-            if (r == fishR && c == fishC) {
-                result = Math.min(result, distance);
-            }
-            for (int d = 0; d < 4; d++) {
-                int nr = r + deltas[d][0];
-                int nc = c + deltas[d][1];
-                if (!inIn(nr, nc) || isVisited[nr][nc] || map[nr][nc] > sharkSize) {
-                    continue;
-                }
-                queue.offer(new int[]{nr, nc, distance + 1});
-                isVisited[nr][nc] = true;
-            }
-        }
-        return result;
-    }
-
-    private static boolean inIn(int r, int c) {
+    private static boolean isIn(int r, int c) {
         return r >= 0 && c >= 0 && r < N && c < N;
     }
 }
