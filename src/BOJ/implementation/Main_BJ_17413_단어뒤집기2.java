@@ -21,23 +21,27 @@ public class Main_BJ_17413_단어뒤집기2 {
         boolean isInTag = false;
         for (int i = 0; i < line.length(); i++) {
             current = line.charAt(i);
-            if (current == OPEN_TAG) {
-                isInTag = true;
-                printReverse(deque, sb);
-                deque.add(current);
-            } else if (current == CLOSE_TAG) {
-                deque.add(current);
-                print(deque, sb);
-                isInTag = false;
-            } else if (current == EMPTY) {
-                if (!isInTag) {
+            switch (current) {
+                case OPEN_TAG:
+                    isInTag = true;
                     printReverse(deque, sb);
-                    sb.append(EMPTY);
-                } else {
-                    deque.add(EMPTY);
-                }
-            } else {
-                deque.add(current);
+                    deque.add(current);
+                    break;
+                case CLOSE_TAG:
+                    deque.add(current);
+                    print(deque, sb);
+                    isInTag = false;
+                    break;
+                case EMPTY:
+                    if (!isInTag) {
+                        printReverse(deque, sb);
+                        sb.append(EMPTY);
+                    } else {
+                        deque.add(EMPTY);
+                    }
+                    break;
+                default:
+                    deque.add(current);
             }
         }
         if (deque.size() != 0) {
