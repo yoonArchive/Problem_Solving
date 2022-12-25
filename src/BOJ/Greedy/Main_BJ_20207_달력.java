@@ -1,7 +1,6 @@
 package BOJ.Greedy;
 
 import java.io.*;
-import java.util.Arrays;
 import java.util.StringTokenizer;
 
 public class Main_BJ_20207_달력 {
@@ -19,12 +18,6 @@ public class Main_BJ_20207_달력 {
             schedules[i][0] = Integer.parseInt(st.nextToken());
             schedules[i][1] = Integer.parseInt(st.nextToken());
         }
-        Arrays.sort(schedules, (o1, o2) -> {
-            if (o1[0] == o2[0]) {
-                return o2[1] - o1[1];
-            }
-            return o1[0] - o2[0];
-        });
         int counts[] = new int[SIZE];
         for (int i = 0; i < n; i++) {
             for (int day = schedules[i][0]; day <= schedules[i][1]; day++) {
