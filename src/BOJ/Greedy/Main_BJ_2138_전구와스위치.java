@@ -34,17 +34,9 @@ public class Main_BJ_2138_전구와스위치 {
         bulbs[2] = bulbs[0].clone();
         changeBulbStatus();
         if (isSame()) {
-            if (result == 0) {
-                bw.write(Integer.toString(count));
-            } else {
-                bw.write(Integer.toString(Math.min(count, result)));
-            }
+            bw.write(Integer.toString(result == 0 ? count : Math.min(count, result)));
         } else {
-            if (result == 0) {
-                bw.write("-1");
-            } else {
-                bw.write(Integer.toString(result));
-            }
+            bw.write(Integer.toString(result == 0 ? -1 : result));
         }
         br.close();
         bw.flush();
