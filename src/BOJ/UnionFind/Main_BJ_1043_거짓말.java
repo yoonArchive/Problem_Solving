@@ -9,16 +9,13 @@ public class Main_BJ_1043_거짓말 {
 
     public static final int KNOW_TRUTH = -1;
 
-    public static int N, M;
-    public static int[] parents;
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        M = Integer.parseInt(st.nextToken());
-        parents = new int[N + 1];
+        int N = Integer.parseInt(st.nextToken());
+        int M = Integer.parseInt(st.nextToken());
+        int[] parents = new int[N + 1];
         st = new StringTokenizer(br.readLine());
         int truths = Integer.parseInt(st.nextToken());
         // 진실을 아는 사람들이 같은 값을 가리키도록 한다.
