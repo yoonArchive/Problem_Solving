@@ -11,9 +11,9 @@ public class Main_BJ_1283_단축키지정 {
 
     public static final String OPEN_TAG = "[";
     public static final String CLOSE_TAG = "]";
-    public static final char EMPTY = ' ';
     public static final String NEW_LINE = "\n";
-
+    public static final char EMPTY = ' ';
+    
     public static Set<Character> shortcuts;
     public static StringBuilder sb;
     public static StringTokenizer st;
