@@ -11,7 +11,6 @@ public class Main_BJ_2252_줄세우기 {
     public static int N, M;
     public static int[] smallerCounts;
     public static List<List<Integer>> tallerStudents;
-    public static Queue<Integer> queue;
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -31,13 +30,13 @@ public class Main_BJ_2252_줄세우기 {
             smallerCounts[taller]++;
             tallerStudents.get(smaller).add(taller);
         }
-        queue = new LinkedList<>();
         lineUp();
         System.out.println(sb);
         br.close();
     }
 
     private static void lineUp() {
+        Queue<Integer> queue = new LinkedList<>();
         for (int i = 1; i <= N; i++) {
             if (smallerCounts[i] == 0) {
                 queue.offer(i);
