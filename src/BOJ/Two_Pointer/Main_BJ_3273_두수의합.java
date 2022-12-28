@@ -1,4 +1,4 @@
-package BOJ.two_Pointer;
+package BOJ.Two_Pointer;
 
 import java.io.*;
 import java.util.Arrays;
