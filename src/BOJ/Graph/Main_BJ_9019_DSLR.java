@@ -10,18 +10,11 @@ import java.util.StringTokenizer;
 public class Main_BJ_9019_DSLR {
 
     public static int A, B;
-    public static Queue<Register> queue;
+    public static Queue<Integer> queue;
     public static boolean[] isVisited;
+    public static int[] parent;
+    public static char[] commands;
 
-    public static class Register {
-        int n;
-        StringBuilder command;
-
-        public Register(int n, StringBuilder command) {
-            this.n = n;
-            this.command = command;
-        }
-    }
 
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
@@ -41,32 +34,34 @@ public class Main_BJ_9019_DSLR {
     private static StringBuilder makeAtoB() {
         queue = new LinkedList<>();
         isVisited = new boolean[10000];
-        queue.offer(new Register(A, new StringBuilder()));
+        parent = new int[10000];
+        commands = new char[10000];
+        queue.offer(A);
         isVisited[A] = true;
         int number;
         while (!queue.isEmpty()) {
-            Register register = queue.poll();
-            int n = register.n;
-            StringBuilder currentCommand = register.command;
+            int n = queue.poll();
             if (n == B) {
-                return currentCommand;
+                return print();
             }
             number = D(n);
-            offerQueue(number, currentCommand, "D");
+            offerQueue(number, n, 'D');
             number = S(n);
-            offerQueue(number, currentCommand, "S");
+            offerQueue(number, n, 'S');
             number = L(n);
-            offerQueue(number, currentCommand, "L");
+            offerQueue(number, n, 'L');
             number = R(n);
-            offerQueue(number, currentCommand, "R");
+            offerQueue(number, n, 'R');
         }
         return null;
     }
 
-    private static void offerQueue(int number, StringBuilder sb, String command) {
+    private static void offerQueue(int number, int parentNumber, char command) {
         if (!isVisited[number]) {
-            queue.offer(new Register(number, new StringBuilder(sb).append(command)));
+            queue.offer(number);
             isVisited[number] = true;
+            parent[number] = parentNumber;
+            commands[number] = command;
         }
     }
 
@@ -84,5 +79,15 @@ public class Main_BJ_9019_DSLR {
 
     private static int R(int n) {
         return n / 10 + n % 10 * 1000;
+    }
+
+    private static StringBuilder print() {
+        StringBuilder result = new StringBuilder();
+        int tmp = B;
+        while (tmp != A) {
+            result.append(commands[tmp]);
+            tmp = parent[tmp];
+        }
+        return result.reverse();
     }
 }
