@@ -14,22 +14,12 @@ public class Main_BJ_9019_DSLR {
     public static boolean[] isVisited;
 
     public static class Register {
-        int d1, d2, d3, d4;
+        int n;
         StringBuilder command;
 
-        public Register(int number, StringBuilder command) {
-            this.d1 = number / 1000;
-            number -= (this.d1 * 1000);
-            this.d2 = number / 100;
-            number -= (this.d2 * 100);
-            this.d3 = number / 10;
-            number -= (this.d3 * 10);
-            this.d4 = number;
+        public Register(int n, StringBuilder command) {
+            this.n = n;
             this.command = command;
-        }
-
-        public int makeN() {
-            return this.d1 * 1000 + this.d2 * 100 + this.d3 * 10 + this.d4;
         }
     }
 
@@ -56,7 +46,7 @@ public class Main_BJ_9019_DSLR {
         int number;
         while (!queue.isEmpty()) {
             Register register = queue.poll();
-            int n = register.makeN();
+            int n = register.n;
             StringBuilder currentCommand = register.command;
             if (n == B) {
                 return currentCommand;
@@ -65,9 +55,9 @@ public class Main_BJ_9019_DSLR {
             offerQueue(number, currentCommand, "D");
             number = S(n);
             offerQueue(number, currentCommand, "S");
-            number = L(register);
+            number = L(n);
             offerQueue(number, currentCommand, "L");
-            number = R(register);
+            number = R(n);
             offerQueue(number, currentCommand, "R");
         }
         return null;
@@ -88,11 +78,11 @@ public class Main_BJ_9019_DSLR {
         return n == 0 ? 9999 : n - 1;
     }
 
-    private static int L(Register r) {
-        return r.d2 * 1000 + r.d3 * 100 + r.d4 * 10 + r.d1;
+    private static int L(int n) {
+        return n % 1000 * 10 + n / 1000;
     }
 
-    private static int R(Register r) {
-        return r.d4 * 1000 + r.d1 * 100 + r.d2 * 10 + r.d3;
+    private static int R(int n) {
+        return n / 10 + n % 10 * 1000;
     }
 }
