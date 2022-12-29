@@ -15,7 +15,6 @@ public class Main_BJ_9019_DSLR {
     public static int[] parent;
     public static char[] commands;
 
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringBuilder sb = new StringBuilder();
