@@ -81,18 +81,11 @@ public class Main_BJ_9019_DSLR {
     }
 
     private static int D(int n) {
-        n *= 2;
-        if (n >= 9999) {
-            n %= 10000;
-        }
-        return n;
+        return n * 2 % 10000;
     }
 
     private static int S(int n) {
-        if (n-- == 0) {
-            n = 9999;
-        }
-        return n;
+        return n == 0 ? 9999 : n - 1;
     }
 
     private static int L(Register r) {
