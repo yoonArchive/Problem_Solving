@@ -1,4 +1,4 @@
-package BOJ.SW역량테스트;
+package BOJ.BackTracking;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;

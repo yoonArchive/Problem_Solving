@@ -1,4 +1,4 @@
-package BOJ.SW역량테스트;
+package BOJ.implementation;
 
 import java.io.*;
 import java.util.PriorityQueue;
