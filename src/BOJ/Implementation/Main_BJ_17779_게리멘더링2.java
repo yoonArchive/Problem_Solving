@@ -23,19 +23,14 @@ public class Main_BJ_17779_게리멘더링2 {
                 population[i][j] = Integer.parseInt(st.nextToken());
             }
         }
-        int x, y, d1, d2;
         minGap = Integer.MAX_VALUE;
-        for (int i = 1; i <= N; i++) {
-            for (int j = 1; j <= N; j++) {
-                x = i;
-                y = j;
-                for (int k = 1; k <= y - 1; k++) {
-                    d1 = k;
-                    for (int l = 1; l <= N - x - d1; l++) {
-                        if (l > N - y) {
+        for (int x = 1; x <= N; x++) {
+            for (int y = 1; y <= N; y++) {
+                for (int d1 = 1; d1 <= y - 1; d1++) {
+                    for (int d2 = 1; d2 <= N - x - d1; d2++) {
+                        if (d2 > N - y) {
                             continue;
                         }
-                        d2 = l;
                         getDistrict(x, y, d1, d2);
                         clear();
                     }
@@ -85,6 +80,8 @@ public class Main_BJ_17779_게리멘더링2 {
             for (int j = 1; j <= y; j++) {
                 if (district[i][j] != 5) {
                     district[i][j] = 1;
+                } else {
+                    break;
                 }
             }
         }
@@ -105,6 +102,8 @@ public class Main_BJ_17779_게리멘더링2 {
             for (int j = 1; j < y - d1 + d2; j++) {
                 if (district[i][j] != 5) {
                     district[i][j] = 3;
+                } else {
+                    break;
                 }
             }
         }
