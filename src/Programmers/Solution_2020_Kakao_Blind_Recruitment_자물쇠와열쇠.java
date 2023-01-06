@@ -1,6 +1,6 @@
 package Programmers;
 
-public class Programmers_2020_Kakao_자물쇠와열쇠 {
+public class Solution_2020_Kakao_Blind_Recruitment_자물쇠와열쇠 {
 
     public static void main(String[] args) {
         int[][] key = {{0, 0, 1}, {0, 0, 1}, {0, 1, 0}};

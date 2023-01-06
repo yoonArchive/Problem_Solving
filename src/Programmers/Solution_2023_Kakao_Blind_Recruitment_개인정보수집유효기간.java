@@ -2,7 +2,7 @@ package Programmers;
 
 import java.util.*;
 
-class Programmers_2023_Kakao_Blind_Recruitment_개인정보수집유효기간 {
+class Solution_2023_Kakao_Blind_Recruitment_개인정보수집유효기간 {
 
     public static int t_year, t_month, t_day;
     public static Map<Character, Integer> termMap;

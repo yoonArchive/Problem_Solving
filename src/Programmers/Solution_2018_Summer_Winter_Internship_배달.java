@@ -1,6 +1,6 @@
 package Programmers;
 
-public class Programmers_summer_winter_internship_배달 {
+public class Solution_2018_Summer_Winter_Internship_배달 {
     static final int INF = 500001;
 
     public static void main(String[] args) {

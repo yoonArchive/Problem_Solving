@@ -3,7 +3,7 @@ package Programmers;
 import java.io.IOException;
 import java.util.Arrays;
 
-public class Programmers_2021_Dev_Matching_로또의최고순위와최저순위 {
+public class Solution_2021_Dev_Matching_로또의최고순위와최저순위 {
     static final int MAX_NUMBER = 45;
     static boolean isSelected[];
 

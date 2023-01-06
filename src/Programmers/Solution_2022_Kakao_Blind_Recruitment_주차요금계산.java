@@ -5,7 +5,7 @@ import java.util.Map.Entry;
 import java.util.StringTokenizer;
 import java.util.TreeMap;
 
-public class Programmers_2022_Kakao_주차요금계산 {
+public class Solution_2022_Kakao_Blind_Recruitment_주차요금계산 {
 
     public static void main(String[] args) {
         int[] fees = {180, 5000, 10, 600};

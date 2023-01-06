@@ -1,6 +1,6 @@
 package Programmers;
 
-public class Programmers_2022_Kakao_양과늑대 {
+public class Solution_2022_Kakao_Blind_Recruitment_양과늑대 {
     static final int SHEEP = 0;
     static boolean[] visited;
     static int answer;

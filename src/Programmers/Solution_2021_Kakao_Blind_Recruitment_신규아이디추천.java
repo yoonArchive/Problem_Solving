@@ -1,6 +1,6 @@
 package Programmers;
 
-public class Programmers_2021_Kakao_신규아이디추천 {
+public class Solution_2021_Kakao_Blind_Recruitment_신규아이디추천 {
 
     public static void main(String[] args) {
         System.out.println(solution("abcdefghijklmn.p"));

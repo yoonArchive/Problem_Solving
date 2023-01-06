@@ -2,7 +2,7 @@ package Programmers;
 
 import java.util.HashSet;
 
-public class Programmers_summer_winter_internship_영어끝말잇기_박기윤 {
+public class Solution_2018_Summer_Winter_Internship_영어끝말잇기 {
     public static void main(String[] args) {
         int n = 2;
         String[] words = {"hello", "one", "even", "never", "now", "world", "draw"};
