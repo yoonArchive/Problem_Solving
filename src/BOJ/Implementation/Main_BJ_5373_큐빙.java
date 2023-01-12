@@ -65,139 +65,139 @@ public class Main_BJ_5373_큐빙 {
             case UP_SIDE:
                 copy(front);
                 if (direction == CLOCK_WISE) {
-                    changeFaceColor(front, right, true, true, 0, 0);
-                    changeFaceColorWithReverseOrder(right, back, true, true, 0, 2);
-                    changeFaceColorWithReverseOrder(back, left, true, true, 2, 0);
-                    changeFaceColor(left, copiedFace, true, true, 0, 0);
+                    changeFaceColor(front, right, true, true, 0, 0, false);
+                    changeFaceColor(right, back, true, true, 0, 2, true);
+                    changeFaceColor(back, left, true, true, 2, 0, true);
+                    changeFaceColor(left, copiedFace, true, true, 0, 0, false);
                     rotate(top, true);
                 } else {
-                    changeFaceColor(front, left, true, true, 0, 0);
-                    changeFaceColorWithReverseOrder(left, back, true, true, 0, 2);
-                    changeFaceColorWithReverseOrder(back, right, true, true, 2, 0);
-                    changeFaceColor(right, copiedFace, true, true, 0, 0);
+                    changeFaceColor(front, left, true, true, 0, 0, false);
+                    changeFaceColor(left, back, true, true, 0, 2, true);
+                    changeFaceColor(back, right, true, true, 2, 0, true);
+                    changeFaceColor(right, copiedFace, true, true, 0, 0, false);
                     rotate(top, false);
                 }
                 break;
             case DOWN_SIDE:
                 copy(front);
                 if (direction == CLOCK_WISE) {
-                    changeFaceColor(front, left, true, true, 2, 2);
-                    changeFaceColorWithReverseOrder(left, back, true, true, 2, 0);
-                    changeFaceColorWithReverseOrder(back, right, true, true, 0, 2);
-                    changeFaceColor(right, copiedFace, true, true, 2, 2);
+                    changeFaceColor(front, left, true, true, 2, 2, false);
+                    changeFaceColor(left, back, true, true, 2, 0, true);
+                    changeFaceColor(back, right, true, true, 0, 2, true);
+                    changeFaceColor(right, copiedFace, true, true, 2, 2, false);
                     rotate(bottom, true);
                 } else {
-                    changeFaceColor(front, right, true, true, 2, 2);
-                    changeFaceColorWithReverseOrder(right, back, true, true, 2, 0);
-                    changeFaceColorWithReverseOrder(back, left, true, true, 0, 2);
-                    changeFaceColor(left, copiedFace, true, true, 2, 2);
+                    changeFaceColor(front, right, true, true, 2, 2, false);
+                    changeFaceColor(right, back, true, true, 2, 0, true);
+                    changeFaceColor(back, left, true, true, 0, 2, true);
+                    changeFaceColor(left, copiedFace, true, true, 2, 2, false);
                     rotate(bottom, false);
                 }
                 break;
             case FRONT_SIDE:
                 copy(top);
                 if (direction == CLOCK_WISE) {
-                    changeFaceColorWithReverseOrder(top, left, true, false, 2, 2);
-                    changeFaceColor(left, bottom, false, true, 2, 0);
-                    changeFaceColorWithReverseOrder(bottom, right, true, false, 0, 0);
-                    changeFaceColor(right, copiedFace, false, true, 0, 2);
+                    changeFaceColor(top, left, true, false, 2, 2, true);
+                    changeFaceColor(left, bottom, false, true, 2, 0, false);
+                    changeFaceColor(bottom, right, true, false, 0, 0, true);
+                    changeFaceColor(right, copiedFace, false, true, 0, 2, false);
                     rotate(front, true);
                 } else {
-                    changeFaceColor(top, right, true, false, 2, 0);
-                    changeFaceColorWithReverseOrder(right, bottom, false, true, 0, 0);
-                    changeFaceColor(bottom, left, true, false, 0, 2);
-                    changeFaceColorWithReverseOrder(left, copiedFace, false, true, 2, 2);
+                    changeFaceColor(top, right, true, false, 2, 0, false);
+                    changeFaceColor(right, bottom, false, true, 0, 0, true);
+                    changeFaceColor(bottom, left, true, false, 0, 2, false);
+                    changeFaceColor(left, copiedFace, false, true, 2, 2, true);
                     rotate(front, false);
                 }
                 break;
             case BACK_SIDE:
                 copy(top);
                 if (direction == CLOCK_WISE) {
-                    changeFaceColor(top, right, true, false, 0, 2);
-                    changeFaceColorWithReverseOrder(right, bottom, false, true, 2, 2);
-                    changeFaceColor(bottom, left, true, false, 2, 0);
-                    changeFaceColorWithReverseOrder(left, copiedFace, false, true, 0, 0);
+                    changeFaceColor(top, right, true, false, 0, 2, false);
+                    changeFaceColor(right, bottom, false, true, 2, 2, true);
+                    changeFaceColor(bottom, left, true, false, 2, 0, false);
+                    changeFaceColor(left, copiedFace, false, true, 0, 0, true);
                     rotate(back, true);
                 } else {
-                    changeFaceColorWithReverseOrder(top, left, true, false, 0, 0);
-                    changeFaceColor(left, bottom, false, true, 0, 2);
-                    changeFaceColorWithReverseOrder(bottom, right, true, false, 2, 2);
-                    changeFaceColor(right, copiedFace, false, true, 2, 0);
+                    changeFaceColor(top, left, true, false, 0, 0, true);
+                    changeFaceColor(left, bottom, false, true, 0, 2, false);
+                    changeFaceColor(bottom, right, true, false, 2, 2, true);
+                    changeFaceColor(right, copiedFace, false, true, 2, 0, false);
                     rotate(back, false);
                 }
                 break;
             case LEFT_SIDE:
                 copy(top);
                 if (direction == CLOCK_WISE) {
-                    changeFaceColor(top, back, false, false, 0, 0);
-                    changeFaceColor(back, bottom, false, false, 0, 0);
-                    changeFaceColor(bottom, front, false, false, 0, 0);
-                    changeFaceColor(front, copiedFace, false, false, 0, 0);
+                    changeFaceColor(top, back, false, false, 0, 0, false);
+                    changeFaceColor(back, bottom, false, false, 0, 0, false);
+                    changeFaceColor(bottom, front, false, false, 0, 0, false);
+                    changeFaceColor(front, copiedFace, false, false, 0, 0, false);
                     rotate(left, true);
                 } else {
-                    changeFaceColor(top, front, false, false, 0, 0);
-                    changeFaceColor(front, bottom, false, false, 0, 0);
-                    changeFaceColor(bottom, back, false, false, 0, 0);
-                    changeFaceColor(back, copiedFace, false, false, 0, 0);
+                    changeFaceColor(top, front, false, false, 0, 0, false);
+                    changeFaceColor(front, bottom, false, false, 0, 0, false);
+                    changeFaceColor(bottom, back, false, false, 0, 0, false);
+                    changeFaceColor(back, copiedFace, false, false, 0, 0, false);
                     rotate(left, false);
                 }
                 break;
             case RIGHT_SIDE:
                 copy(top);
                 if (direction == CLOCK_WISE) {
-                    changeFaceColor(top, front, false, false, 2, 2);
-                    changeFaceColor(front, bottom, false, false, 2, 2);
-                    changeFaceColor(bottom, back, false, false, 2, 2);
-                    changeFaceColor(back, copiedFace, false, false, 2, 2);
+                    changeFaceColor(top, front, false, false, 2, 2, false);
+                    changeFaceColor(front, bottom, false, false, 2, 2, false);
+                    changeFaceColor(bottom, back, false, false, 2, 2, false);
+                    changeFaceColor(back, copiedFace, false, false, 2, 2, false);
                     rotate(right, true);
                 } else {
-                    changeFaceColor(top, back, false, false, 2, 2);
-                    changeFaceColor(back, bottom, false, false, 2, 2);
-                    changeFaceColor(bottom, front, false, false, 2, 2);
-                    changeFaceColor(front, copiedFace, false, false, 2, 2);
+                    changeFaceColor(top, back, false, false, 2, 2, false);
+                    changeFaceColor(back, bottom, false, false, 2, 2, false);
+                    changeFaceColor(bottom, front, false, false, 2, 2, false);
+                    changeFaceColor(front, copiedFace, false, false, 2, 2, false);
                     rotate(right, false);
                 }
                 break;
         }
     }
 
-    private static void changeFaceColorWithReverseOrder(char[][] to, char[][] from, boolean toIsRow, boolean fromIsRow, int toIdx, int fromIdx) {
+    private static void changeFaceColor(char[][] to, char[][] from, boolean toIsRow, boolean fromIsRow, int toIdx, int fromIdx, boolean isReverseOrder) {
         if (toIsRow == fromIsRow) {
-            for (int i = 0; i < 3; i++) {
-                to[toIdx][i] = from[fromIdx][2 - i];
-            }
-        } else {
-            if (toIsRow) {
+            if (isReverseOrder) {
                 for (int i = 0; i < 3; i++) {
-                    to[toIdx][i] = from[2 - i][fromIdx];
+                    to[toIdx][i] = from[fromIdx][2 - i];
                 }
             } else {
-                for (int i = 0; i < 3; i++) {
-                    to[i][toIdx] = from[fromIdx][2 - i];
-                }
-            }
-        }
-    }
-
-    private static void changeFaceColor(char[][] to, char[][] from, boolean toIsRow, boolean fromIsRow, int toIdx, int fromIdx) {
-        if (toIsRow == fromIsRow) {
-            if (toIsRow) {
-                for (int i = 0; i < 3; i++) {
-                    to[toIdx][i] = from[fromIdx][i];
-                }
-            } else {
-                for (int i = 0; i < 3; i++) {
-                    to[i][toIdx] = from[i][fromIdx];
+                if (toIsRow) {
+                    for (int i = 0; i < 3; i++) {
+                        to[toIdx][i] = from[fromIdx][i];
+                    }
+                } else {
+                    for (int i = 0; i < 3; i++) {
+                        to[i][toIdx] = from[i][fromIdx];
+                    }
                 }
             }
         } else {
             if (toIsRow) {
-                for (int i = 0; i < 3; i++) {
-                    to[toIdx][i] = from[i][fromIdx];
+                if (isReverseOrder) {
+                    for (int i = 0; i < 3; i++) {
+                        to[toIdx][i] = from[2 - i][fromIdx];
+                    }
+                } else {
+                    for (int i = 0; i < 3; i++) {
+                        to[toIdx][i] = from[i][fromIdx];
+                    }
                 }
             } else {
-                for (int i = 0; i < 3; i++) {
-                    to[i][toIdx] = from[fromIdx][i];
+                if (isReverseOrder) {
+                    for (int i = 0; i < 3; i++) {
+                        to[i][toIdx] = from[fromIdx][2 - i];
+                    }
+                } else {
+                    for (int i = 0; i < 3; i++) {
+                        to[i][toIdx] = from[fromIdx][i];
+                    }
                 }
             }
         }
