@@ -29,11 +29,18 @@ public class Main_BJ_13913_숨바꼭질4 {
         StringTokenizer st = new StringTokenizer(br.readLine());
         int subin = Integer.parseInt(st.nextToken());
         int sister = Integer.parseInt(st.nextToken());
-        beforeLocation = new int[SIZE];
-        sb.append(findSister(subin, sister)).append("\n");
-        StringBuilder pathSb = new StringBuilder();
-        getPath(subin, sister, pathSb);
-        sb.append(pathSb);
+        if (sister <= subin) {
+            sb.append(subin - sister).append("\n");
+            for (int i = subin; i >= sister; i--) {
+                sb.append(i).append(" ");
+            }
+        } else {
+            beforeLocation = new int[SIZE];
+            sb.append(findSister(subin, sister)).append("\n");
+            StringBuilder pathSb = new StringBuilder();
+            getPath(subin, sister, pathSb);
+            sb.append(pathSb);
+        }
         System.out.println(sb);
         br.close();
     }
