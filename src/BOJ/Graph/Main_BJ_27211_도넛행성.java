@@ -8,11 +8,10 @@ import java.util.StringTokenizer;
 public class Main_BJ_27211_도넛행성 {
 
     public static final int EMPTY = 0;
-    public static final int VISITED = 2;
     public static final int[][] DELTAS = {{-1, 0}, {1, 0}, {0, 1}, {0, -1}};
 
     public static int N, M;
-    public static int[][] planet;
+    public static boolean[][] planet;
 
     public static class Space {
         int r;
@@ -30,17 +29,19 @@ public class Main_BJ_27211_도넛행성 {
         StringTokenizer st = new StringTokenizer(br.readLine());
         N = Integer.parseInt(st.nextToken());
         M = Integer.parseInt(st.nextToken());
-        planet = new int[N][M];
+        planet = new boolean[N][M];
         for (int i = 0; i < N; i++) {
             st = new StringTokenizer(br.readLine());
             for (int j = 0; j < M; j++) {
-                planet[i][j] = Integer.parseInt(st.nextToken());
+                if (Integer.parseInt(st.nextToken()) == EMPTY) {
+                    planet[i][j] = true;
+                }
             }
         }
         int count = 0;
         for (int i = 0; i < N; i++) {
             for (int j = 0; j < M; j++) {
-                if (planet[i][j] == EMPTY) {
+                if (planet[i][j]) {
                     explore(i, j);
                     count++;
                 }
@@ -55,7 +56,7 @@ public class Main_BJ_27211_도넛행성 {
     private static void explore(int sr, int sc) {
         Queue<Space> queue = new LinkedList<>();
         queue.offer(new Space(sr, sc));
-        planet[sr][sc] = VISITED;
+        planet[sr][sc] = false;
         while (!queue.isEmpty()) {
             Space space = queue.poll();
             int r = space.r;
@@ -69,11 +70,11 @@ public class Main_BJ_27211_도넛행성 {
                 if (!isIn(nc, false)) {
                     nc = convert(nc, false);
                 }
-                if (planet[nr][nc] == VISITED || planet[nr][nc] != EMPTY) {
+                if (!planet[nr][nc]) {
                     continue;
                 }
                 queue.offer(new Space(nr, nc));
-                planet[nr][nc] = VISITED;
+                planet[nr][nc] = false;
             }
         }
     }
