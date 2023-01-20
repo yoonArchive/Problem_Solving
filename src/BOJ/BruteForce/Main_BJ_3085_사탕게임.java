@@ -4,7 +4,7 @@ import java.io.*;
 
 public class Main_BJ_3085_사탕게임 {
 
-    public static int N, count;
+    public static int N, maxCount;
     public static char[][] candies;
     public static int[][] deltas = {{1, 0}, {0, 1}};
 
@@ -33,7 +33,7 @@ public class Main_BJ_3085_사탕게임 {
                 }
             }
         }
-        bw.write(Integer.toString(count));
+        bw.write(Integer.toString(maxCount));
         br.close();
         bw.flush();
         bw.close();
@@ -49,49 +49,35 @@ public class Main_BJ_3085_사탕게임 {
     }
 
     private static void eatCandies() {
-        for (int r = 0; r < N; r++) {
-            for (int c = 0; c < N; c++) {
-                count = Math.max(count, checkVertical(r, c));
-                count = Math.max(count, checkHorizontal(r, c));
-            }
+        for (int i = 0; i < N; i++) {
+            checkVertical(i);
+            checkHorizontal(i);
         }
     }
 
-    private static int checkVertical(int r, int c) {
-        char candy = candies[r][c];
-        int same = 0, nr = r;
-        while (--nr >= 0) {
-            if (candies[nr][c] != candy) {
-                break;
+    private static void checkVertical(int r) {
+        int count = 1;
+        for (int c = 0; c < N - 1; c++) {
+            if (candies[r][c] == candies[r][c + 1]) {
+                count++;
+            } else {
+                maxCount = Math.max(maxCount, count);
+                count = 1;
             }
-            same++;
         }
-        nr = r;
-        while (++nr < N) {
-            if (candies[nr][c] != candy) {
-                break;
-            }
-            same++;
-        }
-        return same + 1;
+        maxCount = Math.max(maxCount, count);
     }
 
-    private static int checkHorizontal(int r, int c) {
-        char candy = candies[r][c];
-        int same = 0, nc = c;
-        while (--nc >= 0) {
-            if (candies[r][nc] != candy) {
-                break;
+    private static void checkHorizontal(int c) {
+        int count = 1;
+        for (int r = 0; r < N - 1; r++) {
+            if (candies[r][c] == candies[r + 1][c]) {
+                count++;
+            } else {
+                maxCount = Math.max(maxCount, count);
+                count = 1;
             }
-            same++;
         }
-        nc = c;
-        while (++nc < N) {
-            if (candies[r][nc] != candy) {
-                break;
-            }
-            same++;
-        }
-        return same + 1;
+        maxCount = Math.max(maxCount, count);
     }
 }
