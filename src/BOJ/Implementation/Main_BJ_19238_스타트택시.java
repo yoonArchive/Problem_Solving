@@ -19,15 +19,13 @@ public class Main_BJ_19238_스타트택시 {
         int c;
         int number;
         int distance;
-        boolean isStart;
         boolean canMove;
 
-        public Passenger(int r, int c, int number, int distance, boolean isStart) {
+        public Passenger(int r, int c, int number, int distance) {
             this.r = r;
             this.c = c;
             this.number = number;
             this.distance = distance;
-            this.isStart = isStart;
             this.canMove = true;
         }
 
@@ -62,19 +60,21 @@ public class Main_BJ_19238_스타트택시 {
         taxiR = Integer.parseInt(st.nextToken()) - 1;
         taxiC = Integer.parseInt(st.nextToken()) - 1;
         passengers = new Passenger[M + 1][2];
+        pq = new PriorityQueue<>();
         for (int i = 1; i <= M; i++) {
             st = new StringTokenizer(br.readLine());
             int r = Integer.parseInt(st.nextToken()) - 1;
             int c = Integer.parseInt(st.nextToken()) - 1;
-            passengers[i][0] = new Passenger(r, c, i, getDistance(r, c, i, true), true);
+            passengers[i][0] = new Passenger(r, c, i, getDistance(r, c, i, true));
             if (passengers[i][0].distance == Integer.MAX_VALUE) {
                 passengers[i][0].canMove = false;
+            } else {
+                pq.offer(passengers[i][0]);
             }
             r = Integer.parseInt(st.nextToken()) - 1;
             c = Integer.parseInt(st.nextToken()) - 1;
-            passengers[i][1] = new Passenger(r, c, i, getDistance(r, c, i, false), false);
+            passengers[i][1] = new Passenger(r, c, i, getDistance(r, c, i, false));
         }
-        pq = new PriorityQueue<>();
         int count = 0;
         boolean isMovedAll = false;
         while (true) {
@@ -138,12 +138,6 @@ public class Main_BJ_19238_스타트택시 {
     }
 
     private static int pickUp() {
-        pq.clear();
-        for (int i = 1; i <= M; i++) {
-            if (passengers[i][0].canMove) {
-                pq.offer(passengers[i][0]);
-            }
-        }
         return pq.isEmpty() ? -1 : pq.poll().number;
     }
 
@@ -159,9 +153,11 @@ public class Main_BJ_19238_스타트택시 {
     }
 
     private static void updateDistanceFromTaxi() {
+        pq.clear();
         for (int i = 1; i <= M; i++) {
             if (passengers[i][0].canMove) {
                 passengers[i][0].distance = getDistance(passengers[i][0].r, passengers[i][0].c, i, true);
+                pq.offer(passengers[i][0]);
             }
         }
     }
