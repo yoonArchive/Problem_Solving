@@ -1,4 +1,4 @@
-package BOJ.Shortest_Path;
+package BOJ.Floyd_Warshall;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -6,7 +6,8 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main_BJ_1719_택배_ver_floyd {
+public class Main_BJ_1719_택배 {
+
 	static final int INF = 999999;
 
 	public static void main(String[] args) throws IOException {
@@ -32,7 +33,6 @@ public class Main_BJ_1719_택배_ver_floyd {
 			costs[v1][v2] = cost;
 			costs[v2][v1] = cost;
 		}
-		// FLOYD-WARSHALL
 		for (int mid = 1; mid <= N; mid++) {
 			for (int start = 1; start <= N; start++) {
 				if (mid == start)
@@ -47,16 +47,13 @@ public class Main_BJ_1719_택배_ver_floyd {
 				}
 			}
 		}
-
 		for (int i = 1; i <= N; i++) {
 			for (int j = 1; j <= N; j++) {
 				sb.append(i == j ? "-" : route[i][j]).append(" ");
 			}
 			sb.append("\n");
 		}
-		System.out.println(sb.toString());
+		System.out.println(sb);
 		br.close();
-
 	}
-
 }
