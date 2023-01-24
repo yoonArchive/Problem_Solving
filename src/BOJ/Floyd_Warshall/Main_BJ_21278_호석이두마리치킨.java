@@ -9,6 +9,7 @@ import java.util.Queue;
 import java.util.StringTokenizer;
 
 public class Main_BJ_21278_호석이두마리치킨 {
+
 	static int N, M, minTime = Integer.MAX_VALUE;
 	static boolean isConnected[][];
 	static int selectedBuilding[], time[];
