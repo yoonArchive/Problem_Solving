@@ -1,4 +1,4 @@
-package BOJ.Shortest_Path;
+package BOJ.Floyd_Warshall;
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 import java.util.StringTokenizer;
 
-public class Main_BJ_21278_호석이두마리치킨_ver_floyd {
+public class Main_BJ_21278_호석이두마리치킨 {
 	static int N, M, minTime = Integer.MAX_VALUE;
 	static boolean isConnected[][];
 	static int selectedBuilding[], time[];
