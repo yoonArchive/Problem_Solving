@@ -1,4 +1,4 @@
-package BOJ.Shortest_Path;
+package BOJ.Floyd_Warshall;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -8,7 +8,8 @@ import java.io.OutputStreamWriter;
 import java.util.Arrays;
 import java.util.StringTokenizer;
 
-public class Main_BJ_1504_특정한최단경로_ver_floyd {
+public class Main_BJ_1504_특정한최단경로 {
+
 	static final int INF = 99999999;
 
 	public static void main(String[] args) throws IOException {
@@ -29,11 +30,9 @@ public class Main_BJ_1504_특정한최단경로_ver_floyd {
 			int c = Integer.parseInt(st.nextToken());
 			weight[a][b] = weight[b][a] = c;
 		}
-
 		st = new StringTokenizer(br.readLine(), " ");
 		int v1 = Integer.parseInt(st.nextToken());
 		int v2 = Integer.parseInt(st.nextToken());
-
 		for (int mid = 1; mid <= N; mid++) {
 			for (int start = 1; start <= N; start++) {
 				if (start == mid)
@@ -48,18 +47,14 @@ public class Main_BJ_1504_특정한최단경로_ver_floyd {
 		}
 		int start = 1;
 		int end = N;
-
 		int minCost = Math.min(weight[start][v1] + weight[v1][v2] + weight[v2][end],
 				weight[start][v2] + weight[v2][v1] + weight[v1][end]);
 		if (minCost >= INF)
 			bw.write(Integer.toString(-1));
 		else
 			bw.write(Integer.toString(minCost));
-
 		br.close();
 		bw.flush();
 		bw.close();
-
 	}
-
 }
