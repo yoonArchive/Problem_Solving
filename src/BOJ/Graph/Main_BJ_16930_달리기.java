@@ -18,12 +18,10 @@ public class Main_BJ_16930_달리기 {
     public static class MoveInfo {
         int r;
         int c;
-        int cost;
 
-        public MoveInfo(int r, int c, int cost) {
+        public MoveInfo(int r, int c) {
             this.r = r;
             this.c = c;
-            this.cost = cost;
         }
     }
 
@@ -52,14 +50,13 @@ public class Main_BJ_16930_달리기 {
 
     private static int run() {
         Queue<MoveInfo> queue = new LinkedList<>();
-        queue.offer(new MoveInfo(x1, y1, 0));
+        queue.offer(new MoveInfo(x1, y1));
         while (!queue.isEmpty()) {
             MoveInfo moveInfo = queue.poll();
             int r = moveInfo.r;
             int c = moveInfo.c;
-            int cost = moveInfo.cost;
             if (r == x2 && c == y2) {
-                return cost;
+                break;
             }
             for (int d = 0; d < 4; d++) {
                 for (int l = 1; l <= K; l++) {
@@ -69,15 +66,15 @@ public class Main_BJ_16930_달리기 {
                         break;
                     }
                     if (visit[nr][nc] == 0) {
-                        visit[nr][nc] = cost + 1;
-                        queue.offer(new MoveInfo(nr, nc, cost + 1));
+                        visit[nr][nc] = visit[r][c] + 1;
+                        queue.offer(new MoveInfo(nr, nc));
                     } else if (visit[nr][nc] <= visit[r][c]) {
                         break;
                     }
                 }
             }
         }
-        return -1;
+        return visit[x2][y2] == 0 ? -1 : visit[x2][y2];
     }
 
     private static boolean isIn(int r, int c) {
