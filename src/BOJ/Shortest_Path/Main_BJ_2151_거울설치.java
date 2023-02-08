@@ -23,7 +23,7 @@ public class Main_BJ_2151_거울설치 {
         int c;
         int count;
         int direction;
-        int mirrorDirection; // /:-1, 반대 : 1, 거울 없음 :0
+        int mirrorDirection; // 거울의 방향 (/:1, \:-1, 0: 거울 없음)
 
         public Space(int r, int c, int count, int direction, int mirrorDirection) {
             this.r = r;
@@ -81,58 +81,39 @@ public class Main_BJ_2151_거울설치 {
                 answer = count;
                 break;
             } else if (current == INSTALLABLE) {
-                int nDirection;
                 if (mirrorDirection == 1) { // 거울이 / 방향으로 설치된 경우
                     if (direction == NORTH) {
-                        nDirection = EAST;
+                        direction = EAST;
                     } else if (direction == EAST) {
-                        nDirection = NORTH;
+                        direction = NORTH;
                     } else if (direction == SOUTH) {
-                        nDirection = WEST;
+                        direction = WEST;
                     } else {
-                        nDirection = SOUTH;
+                        direction = SOUTH;
                     }
                 } else if (mirrorDirection == -1) { // 거울이 \ 방향으로 설치된 경우
                     if (direction == NORTH) {
-                        nDirection = WEST;
+                        direction = WEST;
                     } else if (direction == WEST) {
-                        nDirection = NORTH;
+                        direction = NORTH;
                     } else if (direction == SOUTH) {
-                        nDirection = EAST;
+                        direction = EAST;
                     } else {
-                        nDirection = SOUTH;
+                        direction = SOUTH;
                     }
-                } else {
-                    nDirection = direction;
                 }
-                int nr = r + deltas[nDirection][0];
-                int nc = c + deltas[nDirection][1];
-                if (!isIn(nr, nc) || isVisited[nr][nc][nDirection] || home[nr][nc] == WALL) {
-                    continue;
-                }
-                if (home[nr][nc] == INSTALLABLE) {
-                    pq.offer(new Space(nr, nc, count + 1, nDirection, 1));
-                    pq.offer(new Space(nr, nc, count + 1, nDirection, -1));
-                    pq.offer(new Space(nr, nc, count, nDirection, 0));
-                } else {
-                    pq.offer(new Space(nr, nc, count, nDirection, 0));
-                }
-                isVisited[nr][nc][nDirection] = true;
-            } else { // 현재 칸이 empty
-                int nr = r + deltas[direction][0];
-                int nc = c + deltas[direction][1];
-                if (!isIn(nr, nc) || isVisited[nr][nc][direction] || home[nr][nc] == WALL) {
-                    continue;
-                }
-                if (home[nr][nc] == INSTALLABLE) {
-                    pq.offer(new Space(nr, nc, count + 1, direction, 1));
-                    pq.offer(new Space(nr, nc, count + 1, direction, -1));
-                    pq.offer(new Space(nr, nc, count, direction, 0));
-                } else {
-                    pq.offer(new Space(nr, nc, count, direction, 0));
-                }
-                isVisited[nr][nc][direction] = true;
             }
+            int nr = r + deltas[direction][0];
+            int nc = c + deltas[direction][1];
+            if (!isIn(nr, nc) || isVisited[nr][nc][direction] || home[nr][nc] == WALL) {
+                continue;
+            }
+            if (home[nr][nc] == INSTALLABLE) {
+                pq.offer(new Space(nr, nc, count + 1, direction, 1));
+                pq.offer(new Space(nr, nc, count + 1, direction, -1));
+            }
+            pq.offer(new Space(nr, nc, count, direction, 0));
+            isVisited[nr][nc][direction] = true;
         }
         return answer;
     }
