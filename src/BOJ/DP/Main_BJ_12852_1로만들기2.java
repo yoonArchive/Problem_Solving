@@ -18,16 +18,17 @@ public class Main_BJ_12852_1로만들기2 {
             Arrays.fill(counts, N + 1);
             counts[N] = 0;
             for (int i = N; i >= 2; i--) {
-                if (i % 3 == 0 && counts[i / 3] > counts[i] + 1) {
-                    counts[i / 3] = counts[i] + 1;
+                int nextCount = counts[i] + 1;
+                if (i % 3 == 0 && counts[i / 3] > nextCount) {
+                    counts[i / 3] = nextCount;
                     nexts[i / 3] = i;
                 }
-                if (i % 2 == 0 && counts[i / 2] > counts[i] + 1) {
-                    counts[i / 2] = counts[i] + 1;
+                if (i % 2 == 0 && counts[i / 2] > nextCount) {
+                    counts[i / 2] = nextCount;
                     nexts[i / 2] = i;
                 }
-                if (counts[i - 1] > counts[i] + 1) {
-                    counts[i - 1] = counts[i] + 1;
+                if (counts[i - 1] > nextCount) {
+                    counts[i - 1] = nextCount;
                     nexts[i - 1] = i;
                 }
             }
@@ -35,7 +36,7 @@ public class Main_BJ_12852_1로만들기2 {
             StringBuilder order = new StringBuilder("1");
             int next = nexts[1];
             while (next != 0) {
-                order.insert(0," ").insert(0, next);
+                order.insert(0, " ").insert(0, next);
                 next = nexts[next];
             }
             sb.append(order);
