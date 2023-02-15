@@ -65,7 +65,6 @@ public class Main_BJ_1939_중량제한 {
         while (!queue.isEmpty()) {
             Bridge bridge = queue.poll();
             int connectedIsland = bridge.connectedIsland;
-            int weightLimit = bridge.weightLimit;
             if (connectedIsland == island2) {
                 return true;
             }
